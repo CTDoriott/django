@@ -373,7 +373,7 @@ class User(models.Model):
                     raise SiteProfileNotAvailable('Unable to load the profile '
                         'model, check AUTH_PROFILE_MODULE in your project sett'
                         'ings')
-                self._profile_cache = model._default_manager.using(self._state.db).get(user__id__exact=self.id)
+                self._profile_cache = model._default_manager.get(user__id__exact=self.id)
                 self._profile_cache.user = self
             except (ImportError, ImproperlyConfigured):
                 raise SiteProfileNotAvailable
